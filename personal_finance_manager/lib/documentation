@@ -1,0 +1,34 @@
+Tween -> it is a short form for InBetween. InBetween(staet:0, end:10)
+InBetween has a start and and an end and we can track changes in between those intervals.
+
+It is accessed by TweenAnimationBuilder
+
+
+        TweenAnimationBuilder(
+                    tween: _scaleTween,
+                    duration: Duration(microseconds: 600),
+                    builder: (context, scale, child) {
+                    return Transform.scale(
+                        scale: scale,
+                        child: child,
+                    );
+                    })
+
+It's not used with AnimationContainer() and vice versa.
+
+
+            TweenSequence(
+                <TweenSequenceItem<double>>[
+                    TweenSequenceItem<double>(
+                        tween:Tween<double>(
+                            begin:0, end:10
+                        ),
+                        weight: 50.0
+                    ),
+                    TweenSequenceItem<double>(
+                        tween:Tween<double>(begin:10,end:0),
+                        weight:50.0,
+                    )
+                ]
+            )
+
