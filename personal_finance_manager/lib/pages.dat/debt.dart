@@ -11,7 +11,11 @@ class _DebtPageState extends State<DebtPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedContainer(duration: null),
+      body: Center(
+        child: Container(
+          child: Text('Navigation Bar Working'),
+        ),
+      ),
     );
   }
 }

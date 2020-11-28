@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:personal_finance_manager/pages.dat/debt.dart';
 import 'package:personal_finance_manager/widgets/expenses.dart';
 import 'package:personal_finance_manager/widgets/navigationBar.dart';
 import 'modal.dart';
@@ -10,6 +11,7 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
+  int _selectedIndex = 0;
   double _width = double.infinity;
   double _height = 0.0;
 
@@ -26,11 +28,54 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: HexColor('#98C1D9'),
+      // appBar: AppBar(
+      //   backgroundColor: HexColor('#98C1D9'),
+      // ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              label: 'debts',
+              icon: IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DebtPage()),
+                    );
+                  })),
+          BottomNavigationBarItem(
+              label: 'expenses',
+              icon: IconButton(
+                  icon: Icon(Icons.money_off_csred_outlined),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DebtPage()),
+                    );
+                  })),
+          BottomNavigationBarItem(
+              label: 'plannar',
+              icon: IconButton(
+                  icon: Icon(Icons.calendar_today),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DebtPage()),
+                    );
+                  })),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: HexColor('#98C1D9'),
+        onTap: _onItemTapped,
       ),
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
@@ -48,7 +93,6 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
             duration: Duration(seconds: 2),
             child: ExpenseHistory(),
           ),
-          NavigationBar(),
         ],
       ),
     );

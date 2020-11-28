@@ -55,8 +55,10 @@ class _ExpenseHistoryState extends State<ExpenseHistory>
                   curve: Curves.elasticIn,
                 )),
                 child: Container(
-                    height: 70,
+                    padding: EdgeInsets.all(10.0),
+                    height: 80,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 20, right: 20),
