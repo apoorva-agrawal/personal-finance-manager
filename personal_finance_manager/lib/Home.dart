@@ -10,6 +10,7 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
   int _selectedIndex = 0;
   double _width = double.infinity;
   double _height = 0.0;
@@ -17,7 +18,7 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   double _updateState() {
     setState(() {
       _width = double.infinity;
-      _height = 600;
+      _height = 500;
     });
   }
 
@@ -25,6 +26,11 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   void initState() {
     _updateState();
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    _controller.forward();
   }
 
   void _onItemTapped(int index) {
@@ -36,9 +42,9 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: HexColor('#98C1D9'),
-      // ),
+      appBar: AppBar(
+        backgroundColor: HexColor('#98C1D9'),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -77,20 +83,21 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
         onTap: _onItemTapped,
       ),
       body: Stack(
-        alignment: AlignmentDirectional.bottomStart,
         children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: HexColor('#98C1D9'),
-          ),
-          AnimatedContainer(
-            height: _height,
-            width: _width,
-            color: Colors.white,
-            curve: Curves.bounceOut,
-            duration: Duration(seconds: 2),
-            child: ExpenseHistory(),
+          SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 2),
+              end: const Offset(0, 0),
+            ).animate(CurvedAnimation(
+              parent: _controller,
+              curve: Curves.bounceInOut,
+            )),
+            child: Container(
+              height: double.infinity,
+              width: _width,
+              color: Colors.teal[100],
+              child: ExpenseHistory(),
+            ),
           ),
         ],
       ),
