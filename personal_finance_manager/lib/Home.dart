@@ -91,7 +91,7 @@ class _MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
               end: const Offset(0, 0),
             ).animate(CurvedAnimation(
               parent: _controller,
-              curve: Curves.elasticIn,
+              curve: Curves.bounceInOut,
             )),
             child: Container(
               height: double.infinity,
