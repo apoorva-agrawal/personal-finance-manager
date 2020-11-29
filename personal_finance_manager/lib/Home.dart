@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:personal_finance_manager/pages.dat/debt.dart';
 import 'package:personal_finance_manager/widgets/expenses.dart';
-import 'package:personal_finance_manager/widgets/navigationBar.dart';
 import 'modal.dart';
 
 class MyHome extends StatefulWidget {
